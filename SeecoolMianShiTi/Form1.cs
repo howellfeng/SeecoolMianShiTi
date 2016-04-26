@@ -47,7 +47,9 @@ namespace SeecoolMianShiTi
         {
             BubbleSort b = new BubbleSort();
             b.Sort(4, 1, 2, 4, 3);
-            b.Sort(4.1, 1.1, 2, 4, 3); 
+            b.Sort(4.1, 1.1, 2, 4, 3);
+            b.Sort2(4, 1, 2, 4, 3);
+            b.Sort2(4.1, 1.1, 2, 4, 3);
         }
 
     }

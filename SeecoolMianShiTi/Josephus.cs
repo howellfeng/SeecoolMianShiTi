@@ -36,6 +36,7 @@ namespace SeecoolMianShiTi
             Node node = nodes[_k - 1];
             while (node.Next != node)
             {
+                //替换成for (int i = 2; i < _m; i++)是不是更好理解，Node node = nodes[_k - 1]，此时应该是数到第1个人
                 for (int i = 1; i < _m - 1; i++)
                     node = node.Next;
                 Console.WriteLine(node.Next.Id);
@@ -80,7 +81,7 @@ namespace SeecoolMianShiTi
                     node = node.Next;
                 Console.WriteLine(node.Next.Id);
                 node.Next = node.Next.Next;
-                node = node.Next;                
+                node = node.Next;
             }
             Console.WriteLine(node.Id);
         }
