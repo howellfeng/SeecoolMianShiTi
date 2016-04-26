@@ -52,5 +52,21 @@ namespace SeecoolMianShiTi
             b.Sort2(4.1, 1.1, 2, 4, 3);
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FindMaxK find = new FindMaxK();
+            Console.WriteLine(find.Find(2, 1, 2, 4, 3));
+            Console.WriteLine(find.Find(2, 4.1, 1.1, 2, 4, 3));
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            RectangleIntersect ri = new RectangleIntersect();
+            RectangleF rect = RectangleF.FromLTRB(120, 30, 121, 31);
+            RectangleF rect2 = RectangleF.FromLTRB(122, 32, 123, 33);
+            Console.WriteLine(ri.IsIntersect(rect, rect2));
+            RectangleF rect3 = RectangleF.FromLTRB(120.5f, 30.5f, 121.5f, 31.5f);
+            Console.WriteLine(ri.IsIntersect(rect, rect3));
+        }
     }
 }
