@@ -68,5 +68,11 @@ namespace SeecoolMianShiTi
             RectangleF rect3 = RectangleF.FromLTRB(120.5f, 30.5f, 121.5f, 31.5f);
             Console.WriteLine(ri.IsIntersect(rect, rect3));
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Find256 find = new Find256();
+            find.Calc();     
+        }
     }
 }

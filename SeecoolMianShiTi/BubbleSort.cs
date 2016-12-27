@@ -16,7 +16,7 @@ namespace SeecoolMianShiTi
         public void Sort<T>(params T[] arr)
             where T : IComparable
         {
-            for (int i = 0; i < arr.Length - 1; i++)
+            for (int i = 0; i < arr.Length - 1; i++)//从头开始比较，知道找出第2个最小的结束，共需找n-1个数，循环n-1次，因为i从0开始，所以i<arr.length-1
             {
                 for (int j = 0; j < arr.Length - i - 1; j++)
                 {
