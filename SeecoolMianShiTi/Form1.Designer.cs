@@ -35,6 +35,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.buttonBTreeInsert = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -107,11 +108,22 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // buttonBTreeInsert
+            // 
+            this.buttonBTreeInsert.Location = new System.Drawing.Point(13, 217);
+            this.buttonBTreeInsert.Name = "buttonBTreeInsert";
+            this.buttonBTreeInsert.Size = new System.Drawing.Size(75, 23);
+            this.buttonBTreeInsert.TabIndex = 7;
+            this.buttonBTreeInsert.Text = "BTree插入";
+            this.buttonBTreeInsert.UseVisualStyleBackColor = true;
+            this.buttonBTreeInsert.Click += new System.EventHandler(this.buttonBTreeInsert_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 321);
+            this.Controls.Add(this.buttonBTreeInsert);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -135,6 +147,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonBTreeInsert;
     }
 }
 

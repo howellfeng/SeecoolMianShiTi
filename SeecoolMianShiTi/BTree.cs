@@ -87,5 +87,29 @@ namespace SeecoolMianShiTi
                 Data = data;
             }
         }
+        /// <summary>
+        /// 二叉树插入
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public Node InsertNode(Node root, string key)
+        {
+            if (root == null)
+            {
+                root = new Node(key);
+                return root;
+            }
+            if (isSmall(key, root.Data))
+                root.Left = InsertNode(root.Left, key);
+            else
+                root.Right = InsertNode(root.Right, key);
+            return root;
+        }
+
+        private bool isSmall(string a, string b)
+        {
+            return string.Compare(a, b) < 0;
+        }
     }
 }

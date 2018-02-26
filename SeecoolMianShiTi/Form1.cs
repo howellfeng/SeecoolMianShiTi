@@ -72,7 +72,21 @@ namespace SeecoolMianShiTi
         private void button7_Click(object sender, EventArgs e)
         {
             Find256 find = new Find256();
-            find.Calc();     
+            find.Calc();
+        }
+
+        private void buttonBTreeInsert_Click(object sender, EventArgs e)
+        {
+            BTree tree = new BTree();
+            BTree.Node root = null;
+            root = tree.InsertNode(root, "E");
+            root = tree.InsertNode(root, "A");
+            root = tree.InsertNode(root, "B");
+            root = tree.InsertNode(root, "C");
+            root = tree.InsertNode(root, "E");
+            root = tree.InsertNode(root, "F");
+            root = tree.InsertNode(root, "A");
+            tree.CalcLNR(root);
         }
     }
 }
