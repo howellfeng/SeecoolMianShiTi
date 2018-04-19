@@ -58,10 +58,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Huffman.cs" />
     <Compile Include="Josephus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RectangleIntersect.cs" />
+    <Compile Include="RegexCopy.cs" />
     <Compile Include="Reverse.cs" />
     <Compile Include="Sort.cs" />
     <EmbeddedResource Include="Form1.resx">
