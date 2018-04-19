@@ -111,5 +111,19 @@ namespace SeecoolMianShiTi
         {
             return string.Compare(a, b) < 0;
         }
+        public void LevelTraverse(Node root)
+        {
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+            while (!queue.IsEmpty())
+            {
+                Node temp = queue.Dequeue();
+                Console.Write(temp.Data);
+                if (temp.Left != null)
+                    queue.Enqueue(temp.Left);
+                if (temp.Right != null)
+                    queue.Enqueue(temp.Right);
+            }
+        }
     }
 }

@@ -26,21 +26,27 @@ namespace SeecoolMianShiTi
         {
             Josephus j = new Josephus(9, 1, 5);
             j.Start();
-
+            Console.WriteLine("***");
             Josephus2 j2 = new Josephus2(9, 1, 5);
             j2.Calc();
+            Console.WriteLine("***");
+            Josephus3.Calc(9, 1, 5);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Reverse r = new Reverse(5);
             r.Calc();
+
+            Josephus3.Reverse(5);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             BTree t = new BTree();
+            t.CalcNLR(t.Root);
             t.CalcNLR2(t.Root);
+            t.LevelTraverse(t.Root);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -88,5 +94,267 @@ namespace SeecoolMianShiTi
             root = tree.InsertNode(root, "A");
             tree.CalcLNR(root);
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            int[] array = new int[] { 6, 1, 9, 2, 0, 5, 7, 1 };
+            Sort.BubbleSort(array);
+            array.ForEach(Console.WriteLine);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            int[] datas = new int[501];
+            for (int i = 0; i < 250; i++)
+            {
+                datas[i] = i + 1;
+            }
+            for (int i = 0; i < 250; i++)
+            {
+                datas[i + 250] = i + 1;
+            }
+            datas[500] = 500;
+            Josephus3.Calculate(datas);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            int[,] m1 = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+            Josephus3.PrintMatrix(m1, 2, 3);
+            int[,] m2 = new int[,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+            Josephus3.PrintMatrix(m2, 3, 3);
+            Josephus3.Matrix(m1, 2, 3, m2, 3, 3);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            List<Huffman.Node> list = new List<Huffman.Node>();
+            list.Add(new Huffman.Node() { Data = "a", Weights = 7 });
+            list.Add(new Huffman.Node() { Data = "b", Weights = 5 });
+            list.Add(new Huffman.Node() { Data = "c", Weights = 2 });
+            list.Add(new Huffman.Node() { Data = "d", Weights = 4 });
+            Huffman.Node root = Huffman.CreateHuffmanTree(list);
+            Console.WriteLine("1");
+        }
+    }
+    static class Josephus3
+    {
+        class Node
+        {
+            public Node Next { get; set; }
+            public int Data { get; set; }
+        }
+        public static void Calc(int n, int k, int m)
+        {
+            Node[] nodes = buildList(n);
+            nodes[nodes.Length - 1].Next = nodes[0];
+            Node current = nodes[k - 1];
+            int index = 1;
+            while (current.Next != null && current.Next != current)
+            {
+                if (index == m - 1)
+                {
+                    Node temp = current.Next;
+                    Console.WriteLine(temp.Data);
+                    current.Next = temp.Next;
+                    index = 0;
+                }
+                current = current.Next;
+                index++;
+            }
+            Console.WriteLine(current.Data);
+        }
+        private static Node[] buildList(int n)
+        {
+            Node[] nodes = new Node[n];
+            for (int i = 0; i < n; i++)
+            {
+                nodes[i] = new Node() { Data = i + 1 };
+            }
+            for (int i = 0; i < nodes.Length - 1; i++)
+            {
+                nodes[i].Next = nodes[i + 1];
+            }
+            return nodes;
+        }
+
+        public static void Reverse(int n)
+        {
+            Node[] nodes = buildList(n);
+            Node current = nodes[0];
+            Node next = current.Next;
+            consoleNode(current);
+            current.Next = null;
+            while (next.Next != null)
+            {
+                Node temp = next.Next;
+                next.Next = current;
+                current = next;
+                next = temp;
+            }
+            next.Next = current;
+            consoleNode(next);
+        }
+        static void consoleNode(Node root)
+        {
+            Console.WriteLine();
+            while (root.Next != null)
+            {
+                Console.Write(root.Data);
+                root = root.Next;
+            }
+            Console.WriteLine(root.Data);
+        }
+
+        class TreeNode
+        {
+            public TreeNode Left { get; set; }
+            public TreeNode Right { get; set; }
+            public int Data { get; set; }
+        }
+        static void DLR(TreeNode root)
+        {
+            Console.WriteLine(root.Data);
+            if (root.Left != null)
+                DLR(root.Left);
+            if (root.Right != null)
+                DLR(root.Right);
+        }
+        static void LDR(TreeNode root)
+        {
+            if (root.Left != null)
+                LDR(root.Left);
+            Console.WriteLine(root.Data);
+            if (root.Right != null)
+                LDR(root.Right);
+        }
+        static void LRD(TreeNode root)
+        {
+            if (root.Left != null)
+                LRD(root.Left);
+            if (root.Right != null)
+                LRD(root.Right);
+            Console.WriteLine(root.Data);
+        }
+
+        /// <summary>
+        /// 501个数据，有250对一样的，一个不重复，找到找那一个
+        /// </summary>
+        /// <param name="datas"></param>
+        public static void Calculate(int[] datas)
+        {
+            int[] temp = new int[501];
+            datas.ForEach(p =>
+            {
+                temp[p - 1]++;
+            });
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (temp[i] == 1)
+                {
+                    Console.WriteLine(i + 1);
+                    break;
+                }
+            }
+        }
+        public static int Fibonacci(int index)
+        {
+            if (index < 3)
+                return 1;
+            else
+                return Fibonacci(index - 1) + Fibonacci(index - 2);
+        }
+        public static void Matrix(int[,] matrix1, int r1, int c1, int[,] matrix2, int r2, int c2)
+        {
+            //m1的列要等于m2的行
+            if (c1 != r2)
+                return;
+            int[,] result = new int[r1, c2];
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c2; j++)
+                {
+                    result[i, j] = calcCell(matrix1, i, c1, matrix2, r2, j);
+                }
+            }
+            PrintMatrix(result, r1, c2);
+        }
+
+        private static int calcCell(int[,] matrix1, int r1, int c1, int[,] matrix2, int r2, int c2)
+        {
+            int result = 0;
+            for (int i = 0; i < c1;)
+            {
+                for (int j = 0; j < r2;)
+                {
+                    result += matrix1[r1, i] * matrix2[j, c2];
+                    i++;
+                    j++;
+                }
+            }
+            return result;
+        }
+        public static void PrintMatrix(int[,] matrix, int r, int c)
+        {
+            for (int i = 0; i < r; i++)
+            {
+                for (int j = 0; j < c; j++)
+                {
+                    Console.Write($"{matrix[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+    }
+    public class Huffman
+    {
+        public class Node
+        {
+            public Node Left { get; set; }
+            public Node Right { get; set; }
+            public int Weights { get; set; }
+            public string Data { get; set; }
+        }
+        public static Node CreateHuffmanTree(List<Node> nodes)
+        {
+            if (nodes.Count == 0)
+                return null;
+            else if (nodes.Count == 1)
+                return nodes[0];
+            else
+            {
+                Tuple<Node, Node> min = getMin2Node(nodes);
+                Node min1 = min.Item1, min2 = min.Item2;
+                nodes.Remove(min1);
+                nodes.Remove(min2);
+                Node newNode = new Node() { Left = min1, Right = min2, Weights = min1.Weights + min2.Weights };
+                nodes.Add(newNode);
+                return CreateHuffmanTree(nodes);
+            }
+        }
+        private static Tuple<Node, Node> getMin2Node(List<Node> nodes)
+        {
+            Node min1 = nodes[0];
+            Node min2 = nodes[1];
+            if (nodes[0].Weights > nodes[1].Weights)
+            {
+                min1 = nodes[1];
+                min2 = nodes[0];
+            }
+            for (int i = 2; i < nodes.Count; i++)
+            {
+                if (nodes[i].Weights < min1.Weights)
+                {
+                    Node temp = min1;
+                    min1 = nodes[i];
+                    min2 = temp;
+                }
+                else if (nodes[i].Weights < min2.Weights)
+                    min2 = nodes[i];
+            }
+            return new Tuple<Node, Node>(min1, min2);
+        }
+
     }
 }
