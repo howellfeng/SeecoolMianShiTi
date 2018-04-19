@@ -146,6 +146,13 @@ namespace SeecoolMianShiTi
             string[] result2 = RegexCopy.Match(strs, pattern);
             Console.WriteLine("1");
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string str = "6+(3+5)*(8/(2-4))";
+            int result = Calculator.Calculate(str);
+            Console.WriteLine(result);
+        }
     }
     static class Josephus3
     {

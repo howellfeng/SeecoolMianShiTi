@@ -54,7 +54,7 @@ namespace SeecoolMianShiTi
             return false;
         }
 
-        //简单，暂不支持*和?
+        //*:1或多,?:1
         private static bool isMatch(string str, string pattern)
         {
             for (int i = 0; i < str.Length; i++)
